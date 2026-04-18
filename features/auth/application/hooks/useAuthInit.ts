@@ -9,14 +9,7 @@ export function useAuthInit() {
   const setAuth = useSetAtom(authAtom);
 
   useEffect(() => {
-    const token = localStorage.getItem("user_token");
-
-    if (!token) {
-      setAuth({ status: "UNAUTHENTICATED" });
-      return;
-    }
-
-    fetchAuthMe(token)
+    fetchAuthMe()
       .then((meResponse) => {
         if (meResponse.is_registered) {
           setAuth({
@@ -32,7 +25,6 @@ export function useAuthInit() {
         }
       })
       .catch(() => {
-        localStorage.removeItem("user_token");
         setAuth({ status: "UNAUTHENTICATED" });
       });
   }, [setAuth]);
