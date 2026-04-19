@@ -54,6 +54,22 @@ export default function HistoryPanel() {
     }
   }, [period, setSelectedTimelineEvent, setSelectedBarTime]);
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // 선택된 이벤트를 패널 상단으로 스크롤
+  useEffect(() => {
+    if (!selectedTimelineEvent || !scrollRef.current) return;
+    const container = scrollRef.current;
+    const el = container.querySelector<HTMLElement>(
+      `[data-history-event-id="${selectedTimelineEvent.idx}"]`
+    );
+    if (!el) return;
+    const containerRect = container.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const relativeTop = elRect.top - containerRect.top + container.scrollTop;
+    container.scrollTo({ top: relativeTop, behavior: "smooth" });
+  }, [selectedTimelineEvent]);
+
   // bars가 재로드되면 selectedTimelineEvent 기준으로 nearest bar time 재계산
   const selectedTimelineEventRef = useRef(selectedTimelineEvent);
   useEffect(() => {
@@ -127,7 +143,7 @@ export default function HistoryPanel() {
       )}
 
       {timelineState.status === "SUCCESS" && timelineState.events.length > 0 && (
-        <div className="max-h-96 overflow-y-auto pr-1 [scrollbar-width:thin] [scrollbar-color:theme(colors.zinc.300)_transparent] dark:[scrollbar-color:theme(colors.zinc.700)_transparent]">
+        <div ref={scrollRef} className="max-h-96 overflow-y-auto pr-1 [scrollbar-width:thin] [scrollbar-color:theme(colors.zinc.300)_transparent] dark:[scrollbar-color:theme(colors.zinc.700)_transparent]">
           {timelineState.events.map((event, idx) => (
             <TimelineEventCard
               key={`${event.date}-${idx}`}

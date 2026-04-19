@@ -17,17 +17,19 @@ export default function DashboardLayout() {
       <div ref={wrapperRef} className="relative">
         <ConnectorOverlay wrapperRef={wrapperRef} />
 
-        {/* 차트 + 종목 조회 사이드바 */}
-        <section className="mb-6 grid grid-cols-[1fr_260px] gap-4">
-          <NasdaqChart />
-          <StockSearch />
-        </section>
+        <div className="grid grid-cols-[1fr_260px] gap-4">
+          {/* 좌측: 시계열 차트 + 히스토리 패널 */}
+          <div className="flex flex-col gap-4">
+            <NasdaqChart />
+            <HistoryPanel />
+          </div>
 
-        {/* 주요 경제 지표 + 히스토리 패널 */}
-        <section className="mb-6 grid grid-cols-[1fr_260px] gap-4">
-          <HistoryPanel />
-          <EventTimeline />
-        </section>
+          {/* 우측: 종목 조회 + 주요 경제 지표 */}
+          <div className="flex flex-col gap-4">
+            <StockSearch />
+            <EventTimeline />
+          </div>
+        </div>
 
       </div>
     </div>

@@ -21,7 +21,7 @@ export default function StockSearch() {
   };
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+    <div className="flex flex-col rounded-2xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
       <h3 className="mb-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300">종목 조회</h3>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <input
@@ -49,11 +49,9 @@ export default function StockSearch() {
           )}
         </div>
       </form>
-      {ticker && (
-        <p className="mt-3 text-xs text-zinc-400">
-          조회 중: <span className="font-semibold text-blue-500">{ticker}</span>
-        </p>
-      )}
+      <p className={`mt-3 text-xs text-zinc-400 ${ticker ? "visible" : "invisible"}`}>
+        조회 중: <span className="font-semibold text-blue-500">{ticker ?? "-"}</span>
+      </p>
     </div>
   );
 }

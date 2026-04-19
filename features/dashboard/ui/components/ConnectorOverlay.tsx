@@ -65,7 +65,7 @@ export default function ConnectorOverlay({ wrapperRef }: ConnectorOverlayProps) 
     if (scrollContainer) {
       const scrollRect = scrollContainer.getBoundingClientRect();
       const elRect = itemEl.getBoundingClientRect();
-      if (elRect.bottom < scrollRect.top || elRect.top > scrollRect.bottom) {
+      if (elRect.top < scrollRect.top - 1 || elRect.bottom > scrollRect.bottom + 1) {
         setLine(null);
         return;
       }

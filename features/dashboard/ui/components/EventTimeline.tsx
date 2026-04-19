@@ -50,8 +50,11 @@ export default function EventTimeline() {
     const container = scrollRef.current;
     const el = container.querySelector<HTMLElement>(`[data-event-id="${selectedEvent.id}"]`);
     if (!el) return;
+    const containerRect = container.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const relativeTop = elRect.top - containerRect.top + container.scrollTop;
     container.scrollTo({
-      top: el.offsetTop - container.clientHeight / 2 + el.clientHeight / 2,
+      top: relativeTop - container.clientHeight / 2 + elRect.height / 2,
       behavior: "smooth",
     });
   }, [selectedEvent]);
