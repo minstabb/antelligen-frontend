@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MarketRiskPanel from "@/features/dashboard/ui/components/MarketRiskPanel";
 
 const FEATURES = [
   {
@@ -55,6 +56,10 @@ export default function Home() {
             뉴스 · 공시 · 재무 데이터를 세 개의 전문 AI 에이전트가 동시에 분석합니다.
             종목 코드 하나만 입력하면 30초 안에 종합 투자 인사이트를 제공합니다.
           </p>
+
+          <div className="mx-auto mt-10 max-w-2xl text-left">
+            <MarketRiskPanel />
+          </div>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link

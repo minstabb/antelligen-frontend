@@ -9,8 +9,9 @@ const menuItems = [
   { label: "Board", href: "/board" },
   { label: "Youtube", href: "/youtube" },
   { label: "뉴스", href: "/news" },
-  { label: "주식 추천", href: "/stock-recommendation" },
-  { label: "투자", href: "/stock" },
+  { label: "저장된 기사", href: "/news/saved", requiresAuth: true },
+  { label: "종목 분석", href: "/stock-recommendation" },
+  { label: "주식 Q&A", href: "/stock" },
 ];
 
 interface NavbarProps {
@@ -36,11 +37,14 @@ export default function Navbar({ isAuthenticated = false, onLogout }: NavbarProp
           Antelligen
         </Link>
         <div className={navbarStyles.menuList}>
-          {menuItems.map((item) => (
-            <Link key={item.href} href={item.href} className={menuItemStyle(item.href)}>
-              {item.label}
-            </Link>
-          ))}
+          {menuItems.map((item) => {
+            if (item.requiresAuth && !isAuthenticated) return null;
+            return (
+              <Link key={item.href} href={item.href} className={menuItemStyle(item.href)}>
+                {item.label}
+              </Link>
+            );
+          })}
           {isAuthenticated ? (
             <button onClick={onLogout} className={navbarStyles.authButton.logout}>
               Logout

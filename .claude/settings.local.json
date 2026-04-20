@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(find . -type d ! -path ./.next* ! -path ./node_modules*)",
-      "Bash(npx tsc:*)",
-      "Bash(npm run:*)"
-    ]
-  }
-}
