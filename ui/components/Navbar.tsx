@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { navbarStyles } from "@/ui/components/navbar/navbarStyles";
 
 const menuItems = [
@@ -12,6 +13,7 @@ const menuItems = [
   { label: "저장된 기사", href: "/news/saved", requiresAuth: true },
   { label: "종목 분석", href: "/stock-recommendation" },
   { label: "주식 Q&A", href: "/stock" },
+  { label: "기업 정보", href: "/company-profile" },
   { label: "히스토리", href: "/dashboard" },
 ];
 
@@ -22,9 +24,11 @@ interface NavbarProps {
 
 export default function Navbar({ isAuthenticated = false, onLogout }: NavbarProps) {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const menuItemStyle = (href: string) => {
-    const isActive = pathname === href;
+    const isActive = mounted && pathname === href;
     return [
       navbarStyles.menuItem.base,
       isActive ? navbarStyles.menuItem.active : navbarStyles.menuItem.default,
