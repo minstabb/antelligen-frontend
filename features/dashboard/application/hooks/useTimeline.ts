@@ -29,11 +29,12 @@ export function useTimeline() {
       controller.signal,
     )
       .then((data) => {
+        const interval = data.chart_interval ?? "";
         if (data.is_etf) {
           setTimeline({
             status: "ETF",
             ticker: data.ticker,
-            period: data.period,
+            period: interval,
           });
           return;
         }
@@ -41,7 +42,7 @@ export function useTimeline() {
           status: "SUCCESS",
           events: data.events,
           ticker: data.ticker,
-          period: data.period,
+          period: interval,
         });
       })
       .catch((err) => {

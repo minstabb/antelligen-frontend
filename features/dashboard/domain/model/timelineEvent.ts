@@ -23,7 +23,9 @@ export interface TimelineEvent {
 
 export interface TimelineResponse {
   ticker: string;
-  period: string;
+  // ADR-0001: /timeline 은 chart_interval(봉 단위), /macro-timeline 은 lookback_range(조회 기간).
+  chart_interval?: string | null;
+  lookback_range?: string | null;
   count: number;
   events: TimelineEvent[];
   is_etf: boolean;
