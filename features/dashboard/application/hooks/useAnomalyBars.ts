@@ -22,7 +22,7 @@ export function useAnomalyBars() {
         setState({
           status: "SUCCESS",
           ticker: data.ticker,
-          period: data.chart_interval,
+          chart_interval: data.chart_interval,
           events: data.events,
         });
       })
