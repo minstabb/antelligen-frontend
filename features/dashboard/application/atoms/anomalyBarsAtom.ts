@@ -4,7 +4,7 @@ import type { AnomalyBar } from "@/features/dashboard/infrastructure/api/anomaly
 export type AnomalyBarsState =
   | { status: "IDLE" }
   | { status: "LOADING" }
-  | { status: "SUCCESS"; ticker: string; period: string; events: AnomalyBar[] }
+  | { status: "SUCCESS"; ticker: string; chart_interval: string; events: AnomalyBar[] }
   | { status: "ERROR"; message: string };
 
 export const anomalyBarsAtom = atom<AnomalyBarsState>({ status: "IDLE" });

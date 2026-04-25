@@ -13,7 +13,7 @@ interface NasdaqBarRaw {
 }
 
 interface NasdaqApiData {
-  period: string;
+  chart_interval: string;
   count: number;
   bars: NasdaqBarRaw[];
 }

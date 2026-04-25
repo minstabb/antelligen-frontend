@@ -15,7 +15,7 @@ interface StockBarRaw {
 interface StockBarsApiData {
   ticker: string;
   company_name: string;
-  period: string;
+  chart_interval: string;
   count: number;
   bars: StockBarRaw[];
 }

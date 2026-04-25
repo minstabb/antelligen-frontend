@@ -4,7 +4,7 @@ import type { EconomicEvent } from "@/features/dashboard/domain/model/economicEv
 import type { ChartInterval } from "@/features/dashboard/domain/model/chartInterval";
 
 interface EconomicEventsApiData {
-  period: string;
+  chart_interval: string;
   count: number;
   events: EconomicEvent[];
 }
