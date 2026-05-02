@@ -1,5 +1,5 @@
 # antelligen-frontend
-antelligen-frontend!
+antelligen-frontend
 
 # How to create project?
 npx create-next-app@latest antelligen-frontend
